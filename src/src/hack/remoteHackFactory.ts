@@ -1,8 +1,8 @@
 import { NS } from '@ns'
-import hackSelf from '/src/hack/hackSelf'
-import hackRemote from '/src/hack/hackRemote'
+import hackSelf from './remote/hackSelf'
+import hackRemote from './remote/hackRemote'
 
-export async function main(ns : NS) : Promise<void> {
+export default function remoteHackFactory(ns : NS) : void {
   // Uploads and runs hack scripts on remote servers
 
   const serversToHack = ns.scan("home")
@@ -12,11 +12,9 @@ export async function main(ns : NS) : Promise<void> {
     return ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()
   })
 
-  ns.tprint("-- Hacking remote hosts --")
   for (const server of filteredServers) {
     hackServer(ns, server, ns.getHostname())
   }
-  ns.tprint("-- Done hacking remote hosts --")
 }
 
 function hackServer(ns: NS, hostname: string, parent: string) : void {
