@@ -12,7 +12,7 @@ export default function hackNeighbors(ns : NS) : void {
   })
 
   const scriptPath = "/src/hack/payload/hackPayload.js"
-  const localMaxRam = ns.getServerMaxRam("home") - 6  // remove 6GB to account for the watcher script
+  const localMaxRam = ns.getServerMaxRam("home") - 8  // remove 8GB to account for the watcher and controller on home
   const localThreadDivis = ns.getScriptRam(scriptPath) * filteredServers.length
   const localNumThreads = Math.floor(localMaxRam / localThreadDivis)
 
