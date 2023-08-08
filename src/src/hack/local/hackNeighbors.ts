@@ -12,18 +12,21 @@ export default function hackNeighbors(ns : NS) : void {
   })
 
   const scriptPath = "/src/hack/payload/hackPayload.js"
+  const localMaxRam = ns.getServerMaxRam("home") - 6  // remove 6GB to account for the watcher script
   const localThreadDivis = ns.getScriptRam(scriptPath) * filteredServers.length
-  const localNumThreads = Math.floor(ns.getServerMaxRam("home") / localThreadDivis)
+  const localNumThreads = Math.floor(localMaxRam / localThreadDivis)
 
   for (const [i, server] of filteredServers.entries()) {
     
-    if (i == filteredServers.length-1) {
-      ns.tprint(`Spawning last local hack for ${server}`)
-      ns.tprint("**** DONE ****")
-      ns.spawn(scriptPath, localNumThreads, server)
-    } else {
+    if (i != filteredServers.length-1) {
       ns.tprint(`Hacking ${server} locally`)
       ns.run(scriptPath, localNumThreads, server)
+    } else {  // last server to hack
+      ns.tprint(`Spawning last local hack for ${server}`)
+      ns.tprint("-- Done starting local hacks --")
+      ns.tprint("**** DONE ****")
+      ns.spawn(scriptPath, localNumThreads, server)  // kills the script
+      // UNREACHABLE
     }
   }
 }

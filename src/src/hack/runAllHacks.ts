@@ -1,6 +1,6 @@
 import { NS } from '@ns'
-import remoteHackFactory from '/src/hack/remoteHackFactory'
-import localHackFactory from '/src/hack/localHackFactory'
+import remoteHackFactory from 'src/hack/remoteHackFactory'
+import localHackFactory from 'src/hack/localHackFactory'
 
 export async function main(ns : NS) : Promise<void> {
   // Runs hack scripts on every available server at my current hack level
