@@ -6,6 +6,7 @@ export async function main(ns : NS) : Promise<void> {
   // Starting values 
   const initMoney = ns.getServerMoneyAvailable("home")
   const initHackLevel = ns.getHackingLevel()
+  const reservedHomeRam = 8   // amount of RAM on home to save for scripts
 
   let currentHackLevel = initHackLevel
   let lastHackLevel = -100
@@ -14,7 +15,7 @@ export async function main(ns : NS) : Promise<void> {
     // run the hacks if our hacking level has increased by 5 or more
     if (currentHackLevel >= lastHackLevel+5) {
       ns.tprint("Hack level has increased.  Running new scripts...")
-      ns.run("/src/hack/runAllHacks.js")
+      ns.run("/src/hack/runAllHacks.js", 1, reservedHomeRam)
       lastHackLevel = currentHackLevel
     }
     

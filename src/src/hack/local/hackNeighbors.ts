@@ -1,6 +1,6 @@
 import { NS } from '@ns'
 
-export default function hackNeighbors(ns : NS) : void {
+export default function hackNeighbors(ns : NS, reservedHomeRam : number) : void {
   // Starts scripts locally to hack the direct neighbors of our local machine.
   // TERMINATES THE CURRENT SCRIPT
 
@@ -12,7 +12,7 @@ export default function hackNeighbors(ns : NS) : void {
   })
 
   const scriptPath = "/src/hack/payload/hackPayload.js"
-  const localMaxRam = ns.getServerMaxRam("home") - 8  // remove 8GB to account for the watcher and controller on home
+  const localMaxRam = ns.getServerMaxRam("home") - reservedHomeRam  // reserve to account for the watcher and controller on home
   const localThreadDivis = ns.getScriptRam(scriptPath) * filteredServers.length
   const localNumThreads = Math.floor(localMaxRam / localThreadDivis)
 

@@ -12,6 +12,10 @@ export default function nukeServer(ns: NS, hostname: string) : void {
     ns.tprint("Running FTPCrack.exe")
     ns.ftpcrack(hostname)
   }
+  if (ns.fileExists("relaySMTP.exe", "home")) {
+    ns.tprint("Running relaySMTP.exe")
+    ns.relaysmtp(hostname)
+  }
 
   ns.tprint("Running NUKE.exe")
   ns.nuke(hostname)
