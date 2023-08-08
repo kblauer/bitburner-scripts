@@ -11,7 +11,7 @@ export default function hackNeighbors(ns : NS) : void {
     return ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()
   })
 
-  const scriptPath = "/src/hack/payload/hackPayload.ts"
+  const scriptPath = "/src/hack/payload/hackPayload.js"
   const localThreadDivis = ns.getScriptRam(scriptPath) * filteredServers.length
   const localNumThreads = Math.floor(ns.getServerMaxRam("home") / localThreadDivis)
 
