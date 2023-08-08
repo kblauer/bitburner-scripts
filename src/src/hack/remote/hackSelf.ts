@@ -13,9 +13,12 @@ export default function hackSelf(ns : NS, hostname : string) : void {
     ns.tprint(`Nuking server ${hostname}`)
     nukeServer(ns, hostname)
   }
+
+  const serverMaxMoney = ns.getServerMaxMoney(hostname)
+  const serverMinSecurityLevel = ns.getServerMinSecurityLevel(hostname)
   
   ns.scp("/src/hack/payload/hackPayload.js", hostname)
-  ns.exec("/src/hack/payload/hackPayload.js", hostname, numSelfThreads)
+  ns.exec("/src/hack/payload/hackPayload.js", hostname, numSelfThreads, hostname, serverMaxMoney, serverMinSecurityLevel)
 
   ns.tprint(`${hostname} done hacking itself`)
 }

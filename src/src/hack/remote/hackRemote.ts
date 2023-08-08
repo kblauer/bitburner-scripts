@@ -14,9 +14,14 @@ export default function hackRemote(ns: NS, hostname: string, server: string, num
     nukeServer(ns, server)
   }
 
+  const serverMaxMoney = ns.getServerMaxMoney(server)
+  const serverMinSecurityLevel = ns.getServerMinSecurityLevel(server)
+
   ns.tprint(`Server ${hostname} executing hack script for ${server}...`)
   ns.tprint(`${numThreads} threads`)
-  ns.scp("/scripts/hack/hack_2.js", hostname)
-  ns.exec("/scripts/hack/hack_2.js", hostname, numThreads, server)
+
+  ns.scp("/src/hack/payload/hackPayload.js", hostname)
+  ns.exec("/src/hack/payload/hackPayload.js", hostname, numThreads, server, serverMaxMoney, serverMinSecurityLevel)
+
   ns.tprint(`${hostname} done executing hack`)
 }
