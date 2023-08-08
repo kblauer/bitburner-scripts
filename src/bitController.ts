@@ -13,6 +13,7 @@ export async function main(ns : NS) : Promise<void> {
   while(true) {
     // run the hacks if our hacking level has increased by 5 or more
     if (currentHackLevel >= lastHackLevel+5) {
+      ns.tprint("Hack level has increased.  Running new scripts...")
       ns.run("/src/hack/runAllHacks.js")
       lastHackLevel = currentHackLevel
     }
