@@ -1,6 +1,6 @@
 import { NS } from '@ns'
-import hackSelf from './remote/hackSelf'
-import hackRemote from './remote/hackRemote'
+import hackSelf from 'src/hack/remote/hackSelf'
+import hackRemote from 'src/hack/remote/hackRemote'
 
 export default function remoteHackFactory(ns : NS) : void {
   // Uploads and runs hack scripts on remote servers

@@ -1,7 +1,9 @@
-import nukeServer from '/src/util/nukeServer'
+import { NS } from '@ns'
+import nukeServer from 'src/common/nukeServer'
 
 export default function hackSelf(ns : NS, hostname : string) : void {
   // Uploads the payload and execs a hack on the current host (myself)
+
   const numSelfThreads : number = Math.floor(ns.getServerMaxRam(hostname) / ns.getScriptRam("/src/hack/payload/hackPayload.js"))
   
   ns.tprint(`Server ${hostname} hacking itself...`)

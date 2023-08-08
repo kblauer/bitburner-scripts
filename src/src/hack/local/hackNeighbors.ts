@@ -1,6 +1,6 @@
 import { NS } from '@ns'
 
-export function hackNeighbors(ns : NS) : void {
+export default function hackNeighbors(ns : NS) : void {
   // Starts scripts locally to hack the direct neighbors of our local machine.
   // TERMINATES THE CURRENT SCRIPT
 

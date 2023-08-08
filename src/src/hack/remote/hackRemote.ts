@@ -1,4 +1,5 @@
-import nukeServer from "/src/util/nukeServer"
+import { NS } from '@ns'
+import nukeServer from 'src/common/nukeServer'
 
 export default function hackRemote(ns: NS, hostname: string, server: string, numThreads: number) : void {
   // Nukes the host & target, then runs a script hacking the remote 'server' with numThreads
