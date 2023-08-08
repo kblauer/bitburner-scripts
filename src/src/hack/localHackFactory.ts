@@ -1,5 +1,5 @@
 import { NS } from '@ns'
-import { hackNeighbors } from 'src/hack/local/hackNeighbors'
+import hackNeighbors from 'src/hack/local/hackNeighbors'
 
 export default function localHackFactory(ns : NS) : void {
   // Starts scripts on the local machine for hacking remote servers
