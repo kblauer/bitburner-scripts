@@ -1,3 +1,7 @@
+## Bitburner Scripts
+This is a collection of bitburner scripts that I have personally used to complete various tasks within the game.
+
+
 ## Extension Recommendations
 [vscode-bitburner-connector](https://github.com/bitburner-official/bitburner-vscode) ([vscode extension marketplace](https://marketplace.visualstudio.com/items?itemName=bitburner.bitburner-vscode-integration)) to upload your files into the game
 
@@ -17,7 +21,7 @@ npm install
 npm run defs
 ```
 
-## How to use this template
+## How to use these scripts
 Write all your typescript source code in the `/src` directory
 
 To autocompile as you save, run `npm run watch` in a terminal
