@@ -2,7 +2,7 @@ import { NS } from '@ns'
 import { getHackableServers } from 'src/common/serverFilters'
 import hackRemote from 'src/hack/remote/hackRemote'
 
-export default function hackBestMoney(ns : NS, reservedHomeRam : number) : void {
+export default function hackBestMoney(ns : NS) : void {
   // Starts scripts on any owned servers that will hack the servers which offer the best payout.
 
   // This list is manual for now, to automate this we'd have to figure out some pattern in the servers.

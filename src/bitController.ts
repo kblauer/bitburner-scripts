@@ -15,6 +15,7 @@ export async function main(ns : NS) : Promise<void> {
     // run the hacks if our hacking level has increased by 5 or more
     if (currentHackLevel >= lastHackLevel+5) {
       ns.tprint("Hack level has increased.  Running new scripts...")
+      ns.tprint(`Current money is ${ns.getServerMoneyAvailable("home")}, money on script start was ${initMoney}`)
       ns.run("/src/hack/runAllHacks.js", 1, reservedHomeRam)
       lastHackLevel = currentHackLevel
     }
