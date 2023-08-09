@@ -1,18 +1,17 @@
 import { NS } from '@ns'
 import hackSelf from 'src/hack/remote/hackSelf'
 import hackRemote from 'src/hack/remote/hackRemote'
+import { getHackableServers, getMoneyServers } from '/src/common/serverFilters'
 
 export default function remoteHackFactory(ns : NS) : void {
   // Uploads and runs hack scripts on remote servers
 
   const serversToHack = ns.scan("home")
 
-  // filter the list to servers we can actually hack
-  const filteredServers = serversToHack.filter((server) => {
-    return ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()
-  })
+  // filter the list of direct children to servers we can actually hack
+  const hackableServers = getHackableServers(ns, serversToHack)
 
-  for (const server of filteredServers) {
+  for (const server of hackableServers) {
     hackServer(ns, server, ns.getHostname())
   }
 }
@@ -22,21 +21,13 @@ function hackServer(ns: NS, hostname: string, parent: string) : void {
   // get list of connected hosts to this server
   const serverScan = ns.scan(hostname)
 
-  // remove home from the list
-  const noHomeScan = serverScan.filter((server) => {
-    return server !== "home"
-  })
-  ns.tprint(`Scan list for ${hostname}: `, noHomeScan)
+  ns.tprint(`Scan list for ${hostname}: `, serverScan)
 
   // filter the list to servers we can actually hack
-  const hackableServers = noHomeScan.filter((server) => {
-    return ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()
-  })
+  const hackableServers = getHackableServers(ns, serverScan)
 
-  // remove any server which has 0 money - !!this removes servers from the call stack!!
-  const moneyServers = hackableServers.filter((server) => {
-    return ns.getServerMaxMoney(server) > 0
-  })
+  // remove any server which has 0 money - *this removes servers from the call stack*
+  const moneyServers = getMoneyServers(ns, hackableServers)
 
   // if there is nothing remaining in the list, hack yourself
   if (hackableServers.length == 0) {

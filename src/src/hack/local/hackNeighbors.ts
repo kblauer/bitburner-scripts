@@ -1,4 +1,5 @@
 import { NS } from '@ns'
+import { getHackableServers } from '/src/common/serverFilters'
 
 export default function hackNeighbors(ns : NS, reservedHomeRam : number) : void {
   // Starts scripts locally to hack the direct neighbors of our local machine.
@@ -7,18 +8,16 @@ export default function hackNeighbors(ns : NS, reservedHomeRam : number) : void 
   const serversToHack = ns.scan("home")
 
   // filter the list to servers we can actually hack
-  const filteredServers = serversToHack.filter((server) => {
-    return ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()
-  })
+  const hackableServers = getHackableServers(ns, serversToHack)
 
   const scriptPath = "/src/hack/payload/hackPayload.js"
   const localMaxRam = ns.getServerMaxRam("home") - reservedHomeRam  // reserve to account for the watcher and controller on home
-  const localThreadDivis = ns.getScriptRam(scriptPath) * filteredServers.length
+  const localThreadDivis = ns.getScriptRam(scriptPath) * hackableServers.length
   const localNumThreads = Math.floor(localMaxRam / localThreadDivis)
 
-  for (const [i, server] of filteredServers.entries()) {
+  for (const [i, server] of hackableServers.entries()) {
     
-    if (i != filteredServers.length-1) {
+    if (i != hackableServers.length-1) {
       ns.tprint(`Hacking ${server} locally`)
       ns.run(scriptPath, localNumThreads, server)
     } else {  // last server to hack
