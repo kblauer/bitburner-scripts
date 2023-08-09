@@ -2,7 +2,8 @@ import { NS } from '@ns'
 
 const serverBlacklist = [
   "home",
-  "darkweb"
+  "darkweb",
+  "value"
 ]
 
 function getHackableServers(ns : NS, servers: string[]) : string[] {

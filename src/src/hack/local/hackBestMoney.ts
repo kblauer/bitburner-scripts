@@ -32,5 +32,4 @@ export default function hackBestMoney(ns : NS) : void {
       hackRemote(ns, ownedServer, hackTarget, numThreads)
     }
   }
-  
 }
