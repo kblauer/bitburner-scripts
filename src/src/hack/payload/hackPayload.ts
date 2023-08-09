@@ -11,14 +11,18 @@ export async function main(ns : NS) : Promise<void> {
 
   // multipliers for money and security
   const moneyThreshMult = 0.5
-  const securityThreshMulti = 0.25
+  const securityThreshMulti = 1.5
 
   // Defines how much money a server should have before we need to grow it
   const moneyThresh = serverMaxMoney * moneyThreshMult
 
+  /*  Old security threshold calculations.  These do more hacking, but I think for higher security servers we should
+      try lowering the security level more before hacking.  They aren't making much money in the long run.  
   // Security threshold is reached after the initial reaches 25% higher than floored initial value
   const initialSecurityLevel = ns.getServerSecurityLevel(target)
-  const securityThresh : number = Math.floor(initialSecurityLevel) * (1 + securityThreshMulti)
+  const securityThresh : number = Math.floor(initialSecurityLevel) * (1 + securityThreshMulti) */
+
+  const securityThresh = ns.getServerMinSecurityLevel(target) * securityThreshMulti
 
   // Infinite loop that continously hacks/grows/weakens the target server
   let lastGrowMult = 100.00
