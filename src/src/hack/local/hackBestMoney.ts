@@ -26,7 +26,7 @@ export default function hackBestMoney(ns : NS) : void {
 
     // calculate the number of threads for this server
     const threadDivis = ns.getScriptRam("/src/hack/payload/hackPayload.js") * hackableServers.length
-    const numThreads = ns.getServerMaxRam(ownedServer) / threadDivis
+    const numThreads = Math.floor(ns.getServerMaxRam(ownedServer) / threadDivis)
 
     for (const hackTarget of hackableServers) {
       hackRemote(ns, ownedServer, hackTarget, numThreads)
