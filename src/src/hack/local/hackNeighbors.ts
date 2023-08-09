@@ -1,5 +1,5 @@
 import { NS } from '@ns'
-import { getHackableServers } from '/src/common/serverFilters'
+import { getHackableServers } from 'src/common/serverFilters'
 
 export default function hackNeighbors(ns : NS, reservedHomeRam : number) : void {
   // Starts scripts locally to hack the direct neighbors of our local machine.
