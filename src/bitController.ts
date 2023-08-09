@@ -20,8 +20,14 @@ export async function main(ns : NS) : Promise<void> {
       lastHackLevel = currentHackLevel
     }
     
-    // wait 10 minutes
-    await ns.sleep(600000)
+    // wait 1 minute if our hack skill is under 50
+    if (currentHackLevel < 50) {
+      await ns.sleep(60000)
+    } else {
+      // wait 10 minutes
+      await ns.sleep(600000)
+    }
+    
     currentHackLevel = ns.getHackingLevel()
   }
 }
