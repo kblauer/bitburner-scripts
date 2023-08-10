@@ -6,7 +6,7 @@ export async function main(ns : NS) : Promise<void> {
   // Starting values 
   const initMoney = ns.getServerMoneyAvailable("home")
   const initHackLevel = ns.getHackingLevel()
-  const reservedHomeRam = 8   // amount of RAM on home to save for scripts
+  const reservedHomeRam = 16   // amount of RAM on home to save for scripts
 
   let currentHackLevel = initHackLevel
   let lastHackLevel = -100
@@ -20,8 +20,8 @@ export async function main(ns : NS) : Promise<void> {
       lastHackLevel = currentHackLevel
     }
     
-    // wait 1 minute if our hack skill is under 50
-    if (currentHackLevel < 50) {
+    // wait 1 minute if our hack skill is under 100
+    if (currentHackLevel < 100) {
       await ns.sleep(60000)
     } else {
       // wait 10 minutes

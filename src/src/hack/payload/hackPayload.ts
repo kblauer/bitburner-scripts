@@ -10,8 +10,8 @@ export async function main(ns : NS) : Promise<void> {
   const serverMinSecurityLevel = ns.args[2] as number
 
   // multipliers for money and security
-  const moneyThreshMult = 0.5
-  const securityThreshMulti = 1.5
+  const moneyThreshMult = 0.8
+  const securityThreshMulti = 1.1
 
   // Defines how much money a server should have before we need to grow it
   const moneyThresh = serverMaxMoney * moneyThreshMult
