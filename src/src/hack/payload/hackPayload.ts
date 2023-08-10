@@ -10,7 +10,7 @@ export async function main(ns : NS) : Promise<void> {
   const serverMinSecurityLevel = ns.args[2] as number
 
   // multipliers for money and security
-  const moneyThreshMult = 0.8
+  const moneyThreshMult = 0.9
   const securityThreshMulti = 1.1
 
   // Defines how much money a server should have before we need to grow it
@@ -39,7 +39,7 @@ export async function main(ns : NS) : Promise<void> {
       ns.print(`weakening, security level is ${ns.getServerSecurityLevel(target)}, 
               threshold is ${securityThresh}, min is ${serverMinSecurityLevel}`)
       await ns.weaken(target)
-    } else if (lastGrowMult > 1.0 && ns.getServerMoneyAvailable(target) < moneyThresh) {
+    } else if (lastGrowMult > 0.5 && ns.getServerMoneyAvailable(target) < moneyThresh) {
       // If the server's money is less than our threshold, grow it
       ns.print(`growing, money is ${ns.getServerMoneyAvailable(target)}, 
               threshold is ${moneyThresh}, max is ${serverMaxMoney}`)
