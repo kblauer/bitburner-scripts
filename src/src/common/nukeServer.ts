@@ -16,6 +16,14 @@ export default function nukeServer(ns: NS, hostname: string) : void {
     ns.tprint("Running relaySMTP.exe")
     ns.relaysmtp(hostname)
   }
+  if (ns.fileExists("HTTPWorm.exe", "home")) {
+    ns.tprint("Running HTTPWorm.exe")
+    ns.httpworm(hostname)
+  }
+  if (ns.fileExists("SQLInject.exe", "home")) {
+    ns.tprint("Running SQLInject.exe")
+    ns.sqlinject(hostname)
+  }
 
   ns.tprint("Running NUKE.exe")
   ns.nuke(hostname)
