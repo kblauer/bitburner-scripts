@@ -16,15 +16,16 @@ export default function hackNeighbors(ns : NS, reservedHomeRam : number) : void 
   const localNumThreads = Math.floor(localMaxRam / localThreadDivis)
 
   for (const [i, server] of hackableServers.entries()) {
-    
+    const serverMaxMoney = ns.getServerMaxMoney(server)
+    const serverMinSecurityLevel = ns.getServerMinSecurityLevel(server)
     if (i != hackableServers.length-1) {
       ns.tprint(`Hacking ${server} locally`)
-      ns.run(scriptPath, localNumThreads, server)
+      ns.run(scriptPath, localNumThreads, server, serverMaxMoney, serverMinSecurityLevel)
     } else {  // last server to hack
       ns.tprint(`Spawning last local hack for ${server}`)
       ns.tprint("-- Done starting local hacks --")
       ns.tprint("**** DONE ****")
-      ns.spawn(scriptPath, localNumThreads, server)  // kills the script
+      ns.spawn(scriptPath, localNumThreads, server, serverMaxMoney, serverMinSecurityLevel)  // kills the script
       // UNREACHABLE
     }
   }
