@@ -1,8 +1,9 @@
 ## Bitburner Scripts
+
 This is a collection of bitburner scripts that I have personally used to complete various tasks within the game.
 
-
 ## Extension Recommendations
+
 [vscode-bitburner-connector](https://github.com/bitburner-official/bitburner-vscode) ([vscode extension marketplace](https://marketplace.visualstudio.com/items?itemName=bitburner.bitburner-vscode-integration)) to upload your files into the game
 
 [vscode-eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) to use live linting in editor
@@ -12,9 +13,11 @@ This is a collection of bitburner scripts that I have personally used to complet
 There is a workspace file in `.vscode` which contains the recommended settings for all of these
 
 ## Dependencies
+
 [Node.js](https://nodejs.org/en/download/) required for compiling typescript and installing dependencies
 
 ## Installation
+
 ```
 git clone https://github.com/bitburner-official/vscode-template
 npm install
@@ -22,6 +25,7 @@ npm run defs
 ```
 
 ## How to use these scripts
+
 Write all your typescript source code in the `/src` directory
 
 To autocompile as you save, run `npm run watch` in a terminal
@@ -33,15 +37,16 @@ Press F1 and Select `Bitburner: Enable File Watcher` to enable auto uploading to
 If you run `watcher.js` in game, the game will automatically detect file changes and restart the associated scripts
 
 ## Imports
+
 To ensure both the game and typescript have no issues with import paths, your import statements should follow a few formatting rules:
 
- * Paths must be absolute from the root of `src/`, which will be equivalent to the root directory of your home drive
- * Paths must contain no leading slash
- * Paths must end with no file extension
+* Paths must be absolute from the root of `src/`, which will be equivalent to the root directory of your home drive
+* Paths must contain no leading slash
+* Paths must end with no file extension
 
- ### Examples:
+### Examples
 
-To import `helperFunction` from the file `helpers.ts` located in the directory `src/lib/`: 
+To import `helperFunction` from the file `helpers.ts` located in the directory `src/lib/`:
 
 ```js
 import { helperFunction } from 'lib/helpers'
@@ -59,7 +64,7 @@ To import `someFunction` from the file `main.ts` located in the `src/` directory
 import { someFunction } from 'main'
 ```
 
-## Deugging
+## Debugging
 
 For debugging bitburner on Steam you will need to enable a remote debugging port. This can be done by rightclicking bitburner in your Steam library and selecting properties. There you need to add `--remote-debugging-port=9222` [Thanks @DarkMio]
 
