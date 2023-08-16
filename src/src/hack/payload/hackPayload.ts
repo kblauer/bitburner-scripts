@@ -22,7 +22,7 @@ export async function main(ns : NS) : Promise<void> {
   const initialSecurityLevel = ns.getServerSecurityLevel(target)
   const securityThresh : number = Math.floor(initialSecurityLevel) * (1 + securityThreshMulti) */
 
-  const securityThresh = ns.getServerMinSecurityLevel(target) * securityThreshMulti
+  const securityThresh = ns.getServerMinSecurityLevel(target) + 1
 
   // Infinite loop that continously hacks/grows/weakens the target server
   let lastGrowMult = 100.00
@@ -39,7 +39,7 @@ export async function main(ns : NS) : Promise<void> {
       ns.print(`weakening, security level is ${ns.getServerSecurityLevel(target)}, 
               threshold is ${securityThresh}, min is ${serverMinSecurityLevel}`)
       await ns.weaken(target)
-    } else if (lastGrowMult > 0.5 && ns.getServerMoneyAvailable(target) < moneyThresh) {
+    } else if (lastGrowMult > 0.25 && ns.getServerMoneyAvailable(target) < moneyThresh) {
       // If the server's money is less than our threshold, grow it
       ns.print(`growing, money is ${ns.getServerMoneyAvailable(target)}, 
               threshold is ${moneyThresh}, max is ${serverMaxMoney}`)
