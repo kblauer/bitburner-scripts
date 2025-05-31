@@ -7,8 +7,14 @@ export default function localReputationBoost(ns : NS, reservedHomeRam: number) :
   const threadDivis = ns.getScriptRam(scriptPath)
   const numThreads = Math.floor(availableRam / threadDivis)
 
+  const purchasedServers = ns.getPurchasedServers()
+  for (const ownedServer of purchasedServers) {
+    const numThreadsOwned = Math.floor(ns.getServerMaxRam(ownedServer) / threadDivis)
+    ns.scp("/src/hack/payload/reputationPayload.js", ownedServer)
+    ns.exec("/src/hack/payload/reputationPayload.js", ownedServer, numThreadsOwned)
+  }
+
   ns.tprint('spawning ', scriptPath, ' with ', numThreads)
-  ns.tprint('Sharing home RAM with active faction')
   ns.tprint("**** END HACKS- ****")
   ns.spawn(scriptPath, numThreads)
 }

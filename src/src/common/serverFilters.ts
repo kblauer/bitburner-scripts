@@ -7,12 +7,13 @@ const serverBlacklist = [
 ]
 
 function getHackableServers(ns : NS, servers: string[]) : string[] {
+  const purchasedServers = ns.getPurchasedServers()
   return servers.filter((server) => {
-    if (serverBlacklist.indexOf(server) == -1) {
-      if (ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel()) {
-        return ns.getServerNumPortsRequired(server) <= getNumPortOpeners(ns)
-      }
-    }
+    if (serverBlacklist.indexOf(server) == -1 &&
+        ns.getServerRequiredHackingLevel(server) <= ns.getHackingLevel() &&
+        ns.getServerNumPortsRequired(server) <= getNumPortOpeners(ns) &&
+        purchasedServers.indexOf(server) === -1
+        ) return true
     return false
   })
 }

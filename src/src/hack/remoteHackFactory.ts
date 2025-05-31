@@ -21,7 +21,7 @@ function hackServer(ns: NS, hostname: string, parent: string) : void {
   // get list of connected hosts to this server
   const serverScan = ns.scan(hostname)
 
-  ns.tprint(`Scan list for ${hostname}: `, serverScan)
+  //ns.tprint(`Scan list for ${hostname}: `, serverScan)
 
   // filter the list to servers we can actually hack
   const hackableServers = getHackableServers(ns, serverScan)
@@ -50,10 +50,10 @@ function hackServer(ns: NS, hostname: string, parent: string) : void {
 
       // exit condition check
       if (server !== parent) {
-        ns.tprint(`Recursively calling hackServer(ns, ${server}, ${hostname})`)
+        //ns.tprint(`Recursively calling hackServer(ns, ${server}, ${hostname})`)
         hackServer(ns, server, hostname)
       } else {
-        ns.tprint(`Exit condition, only parent connection remaining to ${server}`)
+        //ns.tprint(`Exit condition, only parent connection remaining to ${server}`)
       }
     }
   }
