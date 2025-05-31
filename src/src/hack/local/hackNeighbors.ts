@@ -24,7 +24,7 @@ export default function hackNeighbors(ns : NS, reservedHomeRam : number) : void 
     } else {  // last server to hack
       ns.tprint(`Spawning last local hack for ${server}`)
       ns.tprint("-- Done starting local hacks --")
-      ns.tprint("**** DONE ****")
+      ns.tprint("**** END HACKS ****")
       ns.spawn(scriptPath, localNumThreads, server, serverMaxMoney, serverMinSecurityLevel)  // kills the script
       // UNREACHABLE
     }
