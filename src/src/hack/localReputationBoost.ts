@@ -1,6 +1,6 @@
 import { NS } from '@ns'
 
-export default function localReputationBoost(ns : NS, reservedHomeRam: number) : Promise<void> {
+export default function localReputationBoost(ns : NS, reservedHomeRam: number) : void {
   // use all available home RAM to boost reputation for current faction every 10s
   const scriptPath = "/src/hack/payload/reputationPayload.js"
   const availableRam = ns.getServerMaxRam('home') - reservedHomeRam

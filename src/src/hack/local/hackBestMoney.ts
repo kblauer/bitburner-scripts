@@ -5,16 +5,27 @@ import hackRemote from 'src/hack/remote/hackRemote'
 export default function hackBestMoney(ns : NS) : void {
   // Starts scripts on any owned servers that will hack the servers which offer the best payout.
 
-  // This list is manual for now, to automate this we'd have to figure out some pattern in the servers.
-  // n00dles, the first server you can hack, offers more $/s than many other servers.  It isn't just 
-  // the server's max money, security level, or hack strength.  
+  // High hack skill requirement servers that tend to have 0 RAM
+  const highServers = [
+    "ecorp",              // 1291
+    "nwo",                 // 1075
+    "megacorp",            // 1246
+    "stormtech",           // 1002
+    "blade",               // 1042
+    "kuai-gong",           // 1053
+    "powerhouse-fitness",  // 1035
+    "fulcrumassets"       // 1102
+  ]
+
   const bestServers = [
     "n00dles",
     "phantasy",
     "zer0",
     "max-hardware",
     "silver-helix",
-    "omega-net"
+    "omega-net",
+    "foodnstuff",
+    "joesguns"
   ]
 
   const hackableServers = getHackableServers(ns, bestServers)
